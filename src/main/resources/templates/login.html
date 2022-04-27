@@ -63,6 +63,22 @@
         font-size: 12px;
     }
 
+    .login-box .user-box input:invalid + label:after {
+        content: '✖';
+        color: red;
+        position: absolute;
+        right: -20px;
+        top: 5px;
+    }
+
+    .login-box .user-box input:valid + label:after {
+        content: '✓';
+        color: green;
+        position: absolute;
+        right: -20px;
+        top: 5px;
+    }
+
     .login-box form a {
         position: relative;
         display: inline-block;
@@ -173,7 +189,7 @@
 <script>
     $(document).ready(function(){
         $(document).on("click",".login-btn",function(){
-            var form = $(this).closest("form");
+            var form = $(this).closest("#logForm");
             form.submit();
         });
     });
@@ -182,14 +198,14 @@
 <th:block>
 <div class="login-box">
     <h2>Login</h2>
-    <form th:method="POST" th:action="@{/login}" >
+    <form id="logForm" th:method="POST" th:action="@{/login}" >
         <div class="user-box">
-            <input type="text" name="username" required="">
-            <label>Username</label>
+            <input type="text" name="username" id="logUsername" required minlength="6" maxlength="16">
+            <label for="logUsername">Username</label>
         </div>
         <div class="user-box">
-            <input type="password" name="password" required="">
-            <label>Password</label>
+            <input type="password" name="password" id="logPass" required minlength="6" maxlength="16">
+            <label for="logPass">Password</label>
         </div>
         <th:block class="col col-12 text-center" th:if="${hasError}">
             <p class="text-danger" th:text="${error}"></p>

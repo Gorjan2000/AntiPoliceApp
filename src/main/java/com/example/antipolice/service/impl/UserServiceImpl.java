@@ -2,6 +2,7 @@ package com.example.antipolice.service.impl;
 
 import com.example.antipolice.model.User;
 import com.example.antipolice.model.exceptions.InvalidArgumentsException;
+import com.example.antipolice.model.exceptions.InvalidUserCredentialsException;
 import com.example.antipolice.model.exceptions.UnderAgeException;
 import com.example.antipolice.model.exceptions.UsernameAlreadyExistsException;
 import com.example.antipolice.repository.UserRepository;
@@ -33,7 +34,7 @@ public class UserServiceImpl implements UserService {
 
     public User register(String username, String password, int age){
         if(isNullOrEmpty(username) || isNullOrEmpty(password) || age <= 0)
-            throw new InvalidArgumentsException();
+            throw new InvalidUserCredentialsException();
         if(age<18)
             throw new UnderAgeException(age);
         if(this.userRepository.findByUsername(username).isPresent())

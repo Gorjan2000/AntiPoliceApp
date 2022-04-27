@@ -35,9 +35,6 @@ public class MapCoordinates {
     @ManyToOne
     User user;
 
-    @ManyToMany
-    List<LocationRating> locationRating;
-
 
 
     public MapCoordinates() {
@@ -50,7 +47,6 @@ public class MapCoordinates {
         this.timeSubmited = LocalDateTime.now();
         this.formattedDateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss dd/MM/yyyy"));
         this.user = user;
-        this.locationRating=new ArrayList<>();
     }
 
     public MapCoordinates(LatLng latlng) {

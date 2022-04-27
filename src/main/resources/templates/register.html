@@ -63,6 +63,23 @@
         font-size: 12px;
     }
 
+
+    .register-box .user-box input:invalid + label:after {
+        content: '✖';
+        color: red;
+        position: absolute;
+        right: -20px;
+        top: 5px;
+    }
+
+    .register-box .user-box input:valid + label:after {
+        content: '✓';
+        color: green;
+        position: absolute;
+        right: -20px;
+        top: 5px;
+    }
+
     .register-box form a {
         position: relative;
         display: inline-block;
@@ -173,8 +190,8 @@
 <script>
     $(document).ready(function(){
         $(document).on("click",".register-btn",function(){
-            var form = $(this).closest("form");
-            form.submit();
+            var form1 = $(this).closest("#regForm");
+            form1.submit();
         });
     });
 </script>
@@ -182,18 +199,18 @@
 
 <div class="register-box">
     <h2>Register</h2>
-    <form th:method="POST" th:action="@{/register}" >
+    <form id="regForm" th:method="POST" th:action="@{/register}" >
         <div class="user-box">
-            <input type="text" name="username" required="">
-            <label>Username</label>
+            <input type="text" name="username" id="username" required minlength="6" maxlength="16">
+            <label for="username">Username</label>
         </div>
         <div class="user-box">
-            <input type="password" name="password" required="">
-            <label>Password</label>
+            <input type="password" name="password" id="pass" required minlength="6" maxlength="16">
+            <label for="pass">Password</label>
         </div>
         <div class="user-box">
-            <input type="text" name="age" required="">
-            <label>Your Age</label>
+            <input type="number" name="age" id="age" required min="18">
+            <label for="age">Your Age</label>
         </div>
         <th:block class="col col-12 text-center" th:if="${hasError}">
             <p class="text-danger" th:text="${error}"></p>

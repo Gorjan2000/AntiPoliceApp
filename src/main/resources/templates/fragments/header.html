@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a href="/anti-police" class="navbar-brand">Anti-police
+                <a href="/anti-police" class="navbar-brand">AntiPoliceApp
                 </a>
             </div>
             <!-- Items !-->
@@ -27,14 +27,46 @@
                     <li class="" sec:authorize="isAuthenticated()">
                         <a th:href="@{/anti-police/new_location}">
                             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                            Add
+                            Add Marker
                         </a>
                     </li>
                     <li class="" sec:authorize="isAuthenticated()">
                         <a th:href="@{'/anti-police?filter=mostSubmitted'}">
                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                            MostCommon
+                            Most Common
                         </a>
+                    </li>
+                    <li class="" sec:authorize="isAuthenticated()">
+                        <a href="#" data-toggle="modal" data-target="#myModal1">
+                            <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                            Info
+                        </a>
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal1" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="modal-title">Info - Most common Locations</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>
+                                            If there are more than 5 markers/points in the radius of 50 meters,
+                                            it will be one of the most submitted locations and will be added on the most common locations map.
+                                            You can go there by clicking on the "Go" button below or close this window on the "X".
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a th:href="@{'/anti-police?filter=mostSubmitted'}" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Go</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </li>
                     <li class="" sec:authorize="isAuthenticated()">
                         <a href="#" data-toggle="modal" data-target="#myModal">

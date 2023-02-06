@@ -1,0 +1,25 @@
+version: '3.0'
+services:
+  API:
+    image: 'antipolice'
+    ports:
+      - "8080:8080"
+    depends_on:
+      [MySQL]
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://MySQL:3306/anti_police
+      - SPRING_DATASOURCE_USERNAME=gorjan
+      - SPRING_DATASOURCE_PASSWORD=gorjan
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  MySQL:
+    platform: linux/amd64
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_PASSWORD=gorjan
+      - MYSQL_USER=gorjan
+      - MYSQL_DB=anti_police
+      - MYSQL_ROOT_PASSWORD=VolgaGogo@2
+
